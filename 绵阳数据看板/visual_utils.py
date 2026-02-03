@@ -3,8 +3,11 @@ import seaborn as sns
 import numpy as np
 import pandas as pd
 
-plt.rcParams['font.sans-serif'] = ['SimHei']
+# 修改后（增加对 Linux 字体的支持）：
+plt.rcParams['font.sans-serif'] = ['WenQuanYi Micro Hei', 'SimHei', 'DejaVu Sans', 'sans-serif']
 plt.rcParams['axes.unicode_minus'] = False
+
+
 sns.set_theme(style="whitegrid", font='SimHei', font_scale=1.1)
 
 def plot_mianyang_ranking(df_metrics, col, title):
@@ -113,4 +116,5 @@ def plot_time_trend_sd(df_sub, col, label, color):
     sns.lineplot(data=df_sub, x='企业年限', y=col, ax=ax, color=color, marker='o', errorbar='sd')
     ax.set_ylim(0, 110); ax.axvline(x=15, color='red', linestyle='--')
     ax.set_title(f'{label} 随成立年限变化趋势', fontweight='bold')
+
     return fig

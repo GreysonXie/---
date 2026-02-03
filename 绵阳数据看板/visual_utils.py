@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 
 # 修改后（增加对 Linux 字体的支持）：
-plt.rcParams['font.sans-serif'] = ['WenQuanYi Micro Hei', 'SimHei', 'DejaVu Sans', 'sans-serif']
+plt.rcParams['font.sans-serif'] = ['WenQuanYi Micro Hei', 'DejaVu Sans']
 plt.rcParams['axes.unicode_minus'] = False
 
 
@@ -118,3 +118,4 @@ def plot_time_trend_sd(df_sub, col, label, color):
     ax.set_title(f'{label} 随成立年限变化趋势', fontweight='bold')
 
     return fig
+

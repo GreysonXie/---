@@ -351,29 +351,30 @@ elif selected_module == "🤖 机器人产业链案例解析":
 # =================================================================
 # 模块 3：企业专项审计报告（直读本地 PDF）
 # =================================================================
-elif selected_module == "📄 企业专项审计报告":
-    st.title("📄 单体企业深度审计专项全案报告")
+
+elif selected_module == "📄 企业专项分析":
+    st.title("📄 案例企业报告")
     
-    # 锁定您的本地路径
-    # 专项报告的路径也建议这样写
-    report_path = os.path.join(BASE_DIR, "reports", "四川天链机器人评估报告.pdf")
+    # 注意：在 Streamlit Cloud 中，static 文件夹的文件可以通过 /app/static/文件名 访问
+    # 或者直接使用相对路径
+    report_filename = "tianlian_report.pdf" 
     
-    st.markdown(f"**当前审计对象：** `四川天链机器人股份有限公司` | **报告来源：** 内部科研数据库")
+    st.info("💡 如果浏览器拦截了预览，请点击下方按钮直接下载查看。")
+    
+    # 增加下载按钮（这是最可靠的兜底方案）
+    with open(f"static/{report_filename}", "rb") as f:
+        st.download_button(
+            label="📥 点击下载完整 PDF 审计报告",
+            data=f,
+            file_name=report_filename,
+            mime="application/pdf"
+        )
 
-    if os.path.exists(report_path):
-        with st.spinner("正在加载深度审计报告..."):
-            with open(report_path, "rb") as f:
-                base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-            
-            # 使用 PDF.js 风格嵌入或标准 iframe
-            # 设置 height 为 1000 像素以获得最佳阅读体验
-            pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="1000" type="application/pdf"></iframe>'
-            st.markdown(pdf_display, unsafe_allow_html=True)
-            
-            st.success("✅ 报告已自动挂载，可直接进行翻阅、缩放或打印。")
-    else:
-        st.error(f"❌ 未在指定路径找到报告文件。请检查路径：\n`{report_path}`")
-
-        st.info("💡 提示：请确保该 PDF 文件未被其他程序（如 Adobe Acrobat）独占锁定。")
-
+    # 预览代码（使用 static 路径，浏览器兼容性更好）
+    # 这里的路径通常是 'static/文件名'
+    pdf_url = f"static/{report_filename}"
+    st.markdown(
+        f'<iframe src="{pdf_url}" width="100%" height="1000" type="application/pdf"></iframe>',
+        unsafe_allow_html=True
+    )
 

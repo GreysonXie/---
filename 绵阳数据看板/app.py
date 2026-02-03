@@ -356,7 +356,7 @@ elif selected_module == "📄 企业专项审计报告":
     
     # 锁定您的本地路径
     # 专项报告的路径也建议这样写
-    report_path = os.path.join(BASE_DIR, "reports", "《四川天链机器人股份有限公司》专利业务匹配评估报告.pdf")
+    report_path = os.path.join(BASE_DIR, "reports", "四川天链机器人评估报告.pdf")
     
     st.markdown(f"**当前审计对象：** `四川天链机器人股份有限公司` | **报告来源：** 内部科研数据库")
 
@@ -375,4 +375,5 @@ elif selected_module == "📄 企业专项审计报告":
         st.error(f"❌ 未在指定路径找到报告文件。请检查路径：\n`{report_path}`")
 
         st.info("💡 提示：请确保该 PDF 文件未被其他程序（如 Adobe Acrobat）独占锁定。")
+
 

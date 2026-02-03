@@ -351,26 +351,18 @@ elif selected_module == "🤖 机器人产业链案例解析":
 # =================================================================
 # 模块 3：企业专项审计报告（展示 Markdown 报告）
 # =================================================================
-elif selected_module == "📄 企业评估":
+elif selected_module == "企业报告":
     st.title("📄 案例企业")
     
-    # 设定 Markdown 文件路径
-    # 假设你放在了根目录下的 docs 文件夹里
-    md_report_path = os.path.join(os.path.dirname(__file__), "report.md")
-
-    if os.path.exists(md_report_path):
-        with st.spinner("正在加载深度审计报告..."):
-            with open(md_report_path, "r", encoding="utf-8") as f:
-                report_content = f.read()
-            
-            # 使用 Streamlit 原生渲染 Markdown
-            # unsafe_allow_html=True 可以让你的 MD 支持一些 HTML 标签（如居中、颜色等）
-            st.markdown(report_content, unsafe_allow_html=True)
-            
-            st.divider()
-            st.success("✅ 审计报告已完成实时渲染。")
+    # 读取根目录下的 report.md
+    md_path = os.path.join(os.path.dirname(__file__), "report.md")
+    
+    if os.path.exists(md_path):
+        with open(md_path, "r", encoding="utf-8") as f:
+            content = f.read()
+        
+        # 渲染 Markdown
+        st.markdown(content, unsafe_allow_html=True)
     else:
-        st.error(f"❌ 未找到报告文件。请检查路径：`{md_report_path}`")
-        st.info("💡 提示：请确保已将 report.md 上传至 GitHub 仓库。")
-
+        st.error(f"未找到报告文件：{md_path}。请确保 report.md 已上传至 GitHub 仓库。")
 

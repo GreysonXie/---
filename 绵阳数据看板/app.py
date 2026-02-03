@@ -6,7 +6,13 @@ from data_utils import process_chain_data
 import visual_utils as vis
 
 st.set_page_config(page_title="绵阳产业链数字化画像审计看板", layout="wide")
-DATA_DIR = "data"
+
+# 获取当前脚本所在的绝对路径
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# 动态拼接路径，确保无论在哪里运行都能找到 data 文件夹
+DATA_DIR = os.path.join(BASE_DIR, "data")
+
 SPECIAL_5 = ["科技光子类", "科技低空类", "科技绿能类", "科技核医疗类", "科技机器人类"]
 
 @st.cache_data
@@ -349,7 +355,8 @@ elif selected_module == "📄 企业专项审计报告":
     st.title("📄 单体企业深度审计专项全案报告")
     
     # 锁定您的本地路径
-    report_path = "reports/《四川天链机器人股份有限公司》专利业务匹配评估报告.pdf"
+    # 专项报告的路径也建议这样写
+    report_path = os.path.join(BASE_DIR, "reports", "《四川天链机器人股份有限公司》专利业务匹配评估报告.pdf")
     
     st.markdown(f"**当前审计对象：** `四川天链机器人股份有限公司` | **报告来源：** 内部科研数据库")
 
@@ -368,3 +375,4 @@ elif selected_module == "📄 企业专项审计报告":
         st.error(f"❌ 未在指定路径找到报告文件。请检查路径：\n`{report_path}`")
 
         st.info("💡 提示：请确保该 PDF 文件未被其他程序（如 Adobe Acrobat）独占锁定。")
+

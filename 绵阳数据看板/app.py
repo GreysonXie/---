@@ -6,7 +6,7 @@ from data_utils import process_chain_data
 import visual_utils as vis
 
 st.set_page_config(page_title="绵阳产业链数字化画像审计看板", layout="wide")
-DATA_DIR = r"D:\1.专利数据\循环设计样本数据\元数据\行业指标合并结果\绵阳筛选结果_含原始重复"
+DATA_DIR = "data"
 SPECIAL_5 = ["科技光子类", "科技低空类", "科技绿能类", "科技核医疗类", "科技机器人类"]
 
 @st.cache_data
@@ -349,7 +349,7 @@ elif selected_module == "📄 企业专项审计报告":
     st.title("📄 单体企业深度审计专项全案报告")
     
     # 锁定您的本地路径
-    report_path = r"D:\毕业资料\科研\《四川天链机器人股份有限公司》专利业务匹配评估报告.pdf"
+    report_path = "reports/《四川天链机器人股份有限公司》专利业务匹配评估报告.pdf"
     
     st.markdown(f"**当前审计对象：** `四川天链机器人股份有限公司` | **报告来源：** 内部科研数据库")
 
@@ -366,4 +366,5 @@ elif selected_module == "📄 企业专项审计报告":
             st.success("✅ 报告已自动挂载，可直接进行翻阅、缩放或打印。")
     else:
         st.error(f"❌ 未在指定路径找到报告文件。请检查路径：\n`{report_path}`")
+
         st.info("💡 提示：请确保该 PDF 文件未被其他程序（如 Adobe Acrobat）独占锁定。")

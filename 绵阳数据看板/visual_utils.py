@@ -3,26 +3,9 @@ import seaborn as sns
 import numpy as np
 import pandas as pd
 
-import matplotlib.font_manager as fm
-import os
-
-# 1. 动态获取字体路径
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-# 这里的路径要和你 GitHub 上的文件夹结构对应
-FONT_PATH = os.path.join(CURRENT_DIR, "fonts", "simhei.ttf")
-
-# 2. 强制注册并应用字体
-if os.path.exists(FONT_PATH):
-    # 注册字体到 Matplotlib
-    font_prop = fm.FontProperties(fname=FONT_PATH)
-    # 将其设为默认字体名
-    plt.rcParams['font.family'] = font_prop.get_name()
-    # 解决负号显示乱码
-    plt.rcParams['axes.unicode_minus'] = False
-else:
-    # 兜底：如果字体文件还没传上去，先用 Linux 通用字体
-    plt.rcParams['font.sans-serif'] = ['WenQuanYi Micro Hei', 'DejaVu Sans']
-    plt.rcParams['axes.unicode_minus'] = False
+plt.rcParams['font.sans-serif'] = ['SimHei']
+plt.rcParams['axes.unicode_minus'] = False
+sns.set_theme(style="whitegrid", font='SimHei', font_scale=1.1)
 
 
 def plot_mianyang_ranking(df_metrics, col, title):
@@ -133,5 +116,6 @@ def plot_time_trend_sd(df_sub, col, label, color):
     ax.set_title(f'{label} 随成立年限变化趋势', fontweight='bold')
 
     return fig
+
 
 

@@ -29,7 +29,7 @@ def load_all_data(dir):
 
 # --- 导航中心 ---
 st.sidebar.markdown("# 🛰️ 绵阳产业审计调度舱")
-selected_module = st.sidebar.radio("任务切换：", ["📍 绵阳企业产业分布一览", "🤖 机器人产业链案例解析", "📄 企业专项审计报告"])
+selected_module = st.sidebar.radio("任务切换：", ["📍 绵阳企业产业分布一览", "🤖 机器人产业链案例解析", "📄 企业报告"])
 
 df_all, df_mets = load_all_data(DATA_DIR)
 
@@ -351,8 +351,8 @@ elif selected_module == "🤖 机器人产业链案例解析":
 # =================================================================
 # 模块 3：企业专项审计报告（展示 Markdown 报告）
 # =================================================================
-elif selected_module == "📄 企业专项审计报告":
-    st.title("📄 单体企业深度审计专项全案报告")
+elif selected_module == "📄 企业报告":
+    st.title("📄 案例企业")
     
     # 设定 Markdown 文件路径
     # 假设你放在了根目录下的 docs 文件夹里
@@ -372,4 +372,5 @@ elif selected_module == "📄 企业专项审计报告":
     else:
         st.error(f"❌ 未找到报告文件。请检查路径：`{md_report_path}`")
         st.info("💡 提示：请确保已将 report.md 上传至 GitHub 仓库。")
+
 
